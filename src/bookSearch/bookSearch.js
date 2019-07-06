@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 
+import BookSearchList from "../booksearchList/booksearchList";
+
 export default class BookSearch extends Component {
   render() {
+    console.log(this.props.searchResults);
     return (
       <div className="BookSearch">
         <h1> Google Book Search</h1>
@@ -23,6 +26,7 @@ export default class BookSearch extends Component {
             placeholder="No Filter"
           />
         </form>
+        <BookSearchList searchResults={this.props.searchResults} />
       </div>
     );
   }
