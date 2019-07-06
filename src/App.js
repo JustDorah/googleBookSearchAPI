@@ -30,3 +30,10 @@ export default class App extends Component {
     );
   }
 }
+
+/**Getting this kind of warning.. What to do
+ * warning: LF will be replaced by CRLF in src/App.js.
+The file will have its original line endings in your working directory
+
+https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace
+*/

@@ -18,14 +18,3 @@ export default function Book(props) {
     </div>
   );
 }
-
-/**<div className="book">
-      <div className="book__row">
-        <div className="book__title">
-          <a href={props.url} target="_blank" rel="noopener noreferrer">
-            {props.title}
-          </a>
-        </div>
-        <Rating value={props.rating} />
-      </div>
-      <div className="bookmark__description">{props.description}</div> */
