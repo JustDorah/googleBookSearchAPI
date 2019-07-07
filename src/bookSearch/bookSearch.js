@@ -2,7 +2,9 @@ import React, { Component } from "react";
 
 import BookSearchList from "../booksearchList/booksearchList";
 import DisplayPrintType from "../printType/displayPrintType";
+import GetPrintType from "../printType/getPrintType";
 import DisplayBookType from "../bookType/displayBookType";
+import GetBookType from "../bookType/getBookType";
 
 export default class BookSearch extends Component {
   handleSubmit(event) {
@@ -24,14 +26,17 @@ export default class BookSearch extends Component {
           <input type="text" name="search" id="search" placeholder="henry" />
 
           <label htmlFor="printType">Print Type:</label>
+          <GetPrintType selectOptions={this.props.selectOptions} />
           <DisplayPrintType
           //changeHandler={event => this.props.changeHandler(event)}
           />
 
+          {/* **********************sdf */}
           <label htmlFor="bookType">Book Type:</label>
           <DisplayBookType
           // changeHandler={event => this.props.changeHandler(event)}
           />
+          <GetBookType selectOptions={this.props.selectOptions} />
         </form>
         {/* **************** BOOK SEARCH RESULTS ***************/}
         <BookSearchList searchResults={this.props.searchResults} />

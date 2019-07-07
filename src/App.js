@@ -43,6 +43,7 @@ export default class App extends Component {
     const selectOptions = {
       printSelections: ["all", "books", "magazines"],
       bookSelections: [
+        "no-filter",
         "partial",
         "full",
         "free-ebooks",
