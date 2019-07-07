@@ -14,12 +14,10 @@ printType=magazines - Return just magazines.
 
 import React from "react";
 
-export default function DisplayPrintType() {
+export default function DisplayPrintType(props) {
   return (
-    <select className="display_print">
-      <option>All</option>
-      <option>Books</option>
-      <option>Magazines</option>
+    <select>
+      <option>{/* sadsfas */}</option>
     </select>
   );
 }

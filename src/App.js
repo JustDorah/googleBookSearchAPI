@@ -1,31 +1,61 @@
 import React, { Component } from "react";
 import BookSearch from "./bookSearch/bookSearch";
+//import DisplayPrintType from "./printType/displayPrintType";
+//import DisplayBookType from "./bookType/displayBookType";
 
 import "./App.css";
+//import Book from "./book/book";
 
-const searchResults = [
-  {
-    imageUrl: "http://lorempixel.com/400/200/",
-    title: "Henry I",
-    author: "C. Warren Hollister",
-    price: "$50.00",
-    description: "lorem ipsum valahalla"
-  },
-  {
-    imageUrl: "http://lorempixel.com/400/200/",
-    title: "Henry VIII",
-    author: "C. Warren Hollister",
-    price: "$50.00",
-    description: "lorem ipsum valahalla"
-  }
-];
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPrintType: "All",
+      isBookType: "No-Filter"
+    };
+  }
+
   render() {
+    const searchResults = [
+      {
+        imageUrl: "http://lorempixel.com/400/200/",
+        title: "Henry I",
+        author: "C. Warren Hollister",
+        price: "$50.00",
+        description: "lorem ipsum valahalla",
+        printType: "Book",
+        isEbook: true,
+        viewability: "partial"
+      },
+      {
+        imageUrl: "http://lorempixel.com/400/200/",
+        title: "Henry VIII",
+        author: "C. Warren Hollister",
+        price: "$50.00",
+        description: "lorem ipsum valahalla",
+        printType: "Book",
+        isEbook: false,
+        viewability: "partial"
+      }
+    ];
+
+    const selectOptions = {
+      printSelections: ["all", "books", "magazines"],
+      bookSelections: [
+        "partial",
+        "full",
+        "free-ebooks",
+        "paid-ebooks",
+        "ebooks"
+      ]
+    };
     return (
       <div className="App">
-        <BookSearch searchResults={searchResults} />
-        {/* adfasdf */}
-        {/* adfa */}
+        <BookSearch
+          searchResults={searchResults}
+          selectOptions={selectOptions}
+        />
       </div>
     );
   }
