@@ -18,7 +18,10 @@ export default class GetBookType extends Component {
     console.log(bookOptions, "bookopstsion");
     return (
       <div>
-        <DisplaySelection bookOptions={bookOptions} />
+        <DisplaySelection
+          bookOptions={bookOptions}
+          printChangeHandler={this.props.bookChangeHandler}
+        />
       </div>
     );
   }

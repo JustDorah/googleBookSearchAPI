@@ -15,10 +15,13 @@ export default class GetPrintType extends Component {
       </option>
     ));
 
-    console.log(printOptions, "PRINT!!!opstsion");
+    console.log(printOptions, "PRINT!!!option");
     return (
       <div>
-        <DisplaySelection bookOptions={printOptions} />
+        <DisplaySelection
+          bookOptions={printOptions}
+          printChangeHandler={this.props.printChangeHandler}
+        />
       </div>
     );
   }

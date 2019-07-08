@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import BookSearch from "./bookSearch/bookSearch";
 //import DisplayPrintType from "./printType/displayPrintType";
 //import DisplayBookType from "./bookType/displayBookType";
+//import GetPrintType from "./printType/getPrintType";
+//import DisplaySelection from "./displaySelection/displaySelection";
 
 import "./App.css";
 //import Book from "./book/book";
@@ -15,6 +17,14 @@ export default class App extends Component {
       isBookType: "No-Filter"
     };
   }
+
+  setPrintSelected = () => {
+    console.log("a print has been selected", this);
+  };
+
+  setBookSelected = () => {
+    console.log("a BOOK has been selected", this);
+  };
 
   render() {
     const searchResults = [
@@ -51,11 +61,32 @@ export default class App extends Component {
         "ebooks"
       ]
     };
+    /*
+    handleSelectionChange = e => {
+      e.preventDefault();
+      console.log("this has been selected!!!");
+      // const target = event.target;
+      // const name = target.name;
+
+      //     if (target.id === "print" || "book") {
+      //       this.setState({
+      //         [name]: target.value
+      //       });
+      //       console.log("");
+      //       };
+      //const value = target.id === 'print' ? target.value :
+      //https://reactjs.org/docs/forms.html
+    };
+*/
+
     return (
       <div className="App">
         <BookSearch
           searchResults={searchResults}
           selectOptions={selectOptions}
+          printChangeHandler={this.setPrintSelected}
+          bookChangeHandler={this.setBookSelected}
+          //changeHandler={e => this.handleSelectionChange(e)}
         />
       </div>
     );

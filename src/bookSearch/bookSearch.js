@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 
 import BookSearchList from "../booksearchList/booksearchList";
-import DisplayPrintType from "../printType/displayPrintType";
+//import DisplayPrintType from "../printType/displayPrintType";
 import GetPrintType from "../printType/getPrintType";
-import DisplayBookType from "../bookType/displayBookType";
+//import DisplayBookType from "../bookType/displayBookType";
 import GetBookType from "../bookType/getBookType";
 
 export default class BookSearch extends Component {
   handleSubmit(event) {
     event.preventDefault();
-    alert("submit handled!" + this.state.value);
+    console.log("submit handled!");
   }
   render() {
     console.log(this.props.searchResults);
@@ -25,19 +25,22 @@ export default class BookSearch extends Component {
           </label>
           <input type="text" name="search" id="search" placeholder="henry" />
 
-          <label htmlFor="printType">Print Type:</label>
-          <GetPrintType selectOptions={this.props.selectOptions} />
-          <DisplayPrintType
-          //changeHandler={event => this.props.changeHandler(event)}
-          />
-
-          {/* **********************sdf */}
-          <label htmlFor="bookType">Book Type:</label>
-          <DisplayBookType
-          // changeHandler={event => this.props.changeHandler(event)}
-          />
-          <GetBookType selectOptions={this.props.selectOptions} />
+          <input type="submit" value="Submit" />
         </form>
+
+        <label htmlFor="printType">Print Type:</label>
+        <GetPrintType
+          selectOptions={this.props.selectOptions}
+          printChangeHandler={this.props.printChangeHandler}
+        />
+
+        {/* **********************sdf */}
+        <label htmlFor="bookType">Book Type:</label>
+        <GetBookType
+          selectOptions={this.props.selectOptions}
+          bookChangeHandler={this.props.bookChangeHandler}
+        />
+
         {/* **************** BOOK SEARCH RESULTS ***************/}
         <BookSearchList searchResults={this.props.searchResults} />
       </div>
