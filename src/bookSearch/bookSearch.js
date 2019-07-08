@@ -1,16 +1,9 @@
 import React, { Component } from "react";
-
 import BookSearchList from "../booksearchList/booksearchList";
-//import DisplayPrintType from "../printType/displayPrintType";
 import GetPrintType from "../printType/getPrintType";
-//import DisplayBookType from "../bookType/displayBookType";
 import GetBookType from "../bookType/getBookType";
 
 export default class BookSearch extends Component {
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log("submit handled!");
-  }
   render() {
     console.log(this.props.searchResults);
     return (
@@ -19,11 +12,20 @@ export default class BookSearch extends Component {
           <h1> Google Book Search</h1>
         </header>
 
-        <form className="googleBookSearch__form" onSubmit={this.handleSubmit}>
+        <form
+          className="googleBookSearch__form"
+          onSubmit={e => this.props.handleSubmit(e)}
+        >
           <label className="searchL" htmlFor="search">
             Search:
           </label>
-          <input type="text" name="search" id="search" placeholder="henry" />
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="henry"
+            onChange={inp => this.props.handleSearchInput(inp.target.value)}
+          />
 
           <input type="submit" value="Submit" />
         </form>
