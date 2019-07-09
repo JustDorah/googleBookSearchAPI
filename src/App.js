@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import BookSearch from "./bookSearch/bookSearch";
 
 import "./App.css";
+import BookSearchList from "./bookSearchList/bookSearchList";
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isPrintType: "All",
-      isBookType: "No-Filter",
+      isPrintType: "all",
+      isBookType: "no-filter",
       searchEntry: "",
-      fetchResults: [],
-      maxResults: 5
+      searchResults: [],
+      error: null
     };
   }
 
@@ -20,36 +21,66 @@ export default class App extends Component {
   // };
 
   setPrintSelected(sel) {
-    //this.setState({
-    // isPrintType: sel
-    //});
     console.log("Print Selected:", sel);
+    this.setState({
+      isPrintType: sel
+    });
   }
 
   setBookSelected(sel) {
     console.log(" BOOK selected:", sel);
+    this.setState({
+      isBookType: sel
+    });
   }
 
   searchInput(inp) {
-    console.log("Search has been activated. Searsch entry is: ", inp);
+    console.log("Search has been activated. Search entry is: ", inp);
+    this.setState({
+      searchEntry: inp
+    });
   }
 
   handleSubmit(e) {
     e.preventDefault();
     console.log("submit handled!");
 
+    //Creating a query
     const baseUrl =
       "https://www.googleapis.com/books/v1/volumes?q=search+terms";
+    let printType = `$printType=${this.state.isPrintType}`;
+    let filter =
+      this.state.isBookType !== "no-filter"
+        ? `$filter=${this.state.isBookType}`
+        : "";
+    let searchEntry = `${this.state.searchEntry}`;
 
-    const queryString = baseUrl;
+    const queryString = `${baseUrl}?q=${searchEntry}&${filter}&${printType}`;
 
-    // fetch()
+    console.log(queryString);
+
+    //perform search
+    fetch(queryString)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error();
+      })
+      .then(responseJSon => {
+        console.log(responseJSon);
+        this.setState({
+          searchResults: responseJSon.items
+        });
+      })
+      .catch(e => {
+        console.log(e);
+        this.setState({ error: e.message });
+      });
   }
 
   render() {
-    const searchResults = [
-      {
-        imageUrl: "http://lorempixel.com/400/200/",
+    /* eUrl: "http://lorempixel.com/400/200/",
         title: "Henry I",
         author: "C. Warren Hollister",
         price: "$50.00",
@@ -69,7 +100,7 @@ export default class App extends Component {
         viewability: "partial"
       }
     ];
-
+*/
     const selectOptions = {
       printSelections: ["all", "books", "magazines"],
       bookSelections: [
@@ -82,10 +113,15 @@ export default class App extends Component {
       ]
     };
 
+    const error = this.state.error ? (
+      <div className="error">{this.state.error}</div>
+    ) : (
+      ""
+    );
     return (
       <div className="App">
         <BookSearch
-          searchResults={searchResults}
+          // searchResults={searchResults}
           selectOptions={selectOptions}
           printChangeHandler={sel => this.setPrintSelected(sel)}
           bookChangeHandler={sel => this.setBookSelected(sel)}
@@ -93,10 +129,16 @@ export default class App extends Component {
           //bookChangeHandler={this.setBookSelected}
           handleSearchInput={inp => this.searchInput(inp)}
         />
+        <BookSearchList filterBookInfo={this.state.searchResults} />
+        {error}
       </div>
     );
   }
 }
+
+App.defaultProps = {
+  searchResults: []
+};
 
 /**Getting this kind of warning.. What to do
  * warning: LF will be replaced by CRLF in src/App.js.

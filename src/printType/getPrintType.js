@@ -3,7 +3,7 @@ import DisplaySelection from "../displaySelection/displaySelection";
 
 export default class GetPrintType extends Component {
   render() {
-    console.log(this.props.selectOptions.printSelections, "get **PRINT**");
+    // console.log(this.props.selectOptions.printSelections, "get **PRINT**");
 
     const selectOptions = this.props.selectOptions.printSelections;
 
@@ -15,7 +15,7 @@ export default class GetPrintType extends Component {
       </option>
     ));
 
-    console.log(printOptions, "PRINT!!!option");
+    //console.log(printOptions, "PRINT!!!option");
     return (
       <div>
         <DisplaySelection

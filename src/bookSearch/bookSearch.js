@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import BookSearchList from "../booksearchList/booksearchList";
+//import BookSearchList from "../booksearchList/booksearchList";
 import GetPrintType from "../printType/getPrintType";
 import GetBookType from "../bookType/getBookType";
 
 export default class BookSearch extends Component {
   render() {
-    console.log(this.props.searchResults);
+    //console.log(this.props.searchResults);
     return (
       <div className="BookSearch">
         <header className="header">
@@ -44,7 +44,7 @@ export default class BookSearch extends Component {
         />
 
         {/* **************** BOOK SEARCH RESULTS ***************/}
-        <BookSearchList searchResults={this.props.searchResults} />
+        {/* <BookSearchList searchResults={this.props.searchResults} /> */}
       </div>
     );
   }

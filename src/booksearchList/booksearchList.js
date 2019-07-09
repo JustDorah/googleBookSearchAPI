@@ -1,13 +1,33 @@
 import React, { Component } from "react";
-//import BookSearch from "../bookSearch/bookSearch";
 import Book from "../book/book";
 
 export default class BookSearchList extends Component {
   render() {
-    const searchResults = this.props.searchResults.map((results, i) => (
-      <Book {...results} key={i} />
+    const bookInfo = this.props.filterBookInfo.map((info, i) => (
+      <Book
+        key={i}
+        title={info.volumeInfo.title}
+        image={
+          "imageLinks" in info.volumeInfo
+            ? info.volumeInfo.imageLinks.thumbnail
+            : ""
+        }
+        author={
+          "authors" in info.volumeInfo
+            ? `Author(s): ` + info.volumeInfo.authors //how to separate multiple authors and how to bold Author
+            : ""
+        }
+        price={
+          "listPrice" in info.saleInfo
+            ? `Price: $` + info.saleInfo.listPrice.amount
+            : ""
+          //info.saleInfo.saleability
+        }
+        description={info.volumeInfo.description}
+        preview={info.volumeInfo.previewLink}
+      />
     ));
-    console.log(searchResults, "bookSearchList results");
-    return <div className="BookSearchList">{searchResults}</div>;
+    console.log(bookInfo, "bookSearchList results");
+    return <div className="BookSearchList">{bookInfo}</div>;
   }
 }

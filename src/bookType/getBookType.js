@@ -3,7 +3,7 @@ import DisplaySelection from "../displaySelection/displaySelection";
 
 export default class GetBookType extends Component {
   render() {
-    console.log(this.props.selectOptions.bookSelections, "get book");
+    //console.log(this.props.selectOptions.bookSelections, "get book");
 
     const selectOptions = this.props.selectOptions.bookSelections;
 
@@ -15,7 +15,7 @@ export default class GetBookType extends Component {
       </option>
     ));
 
-    console.log(bookOptions, "bookopstsion");
+    //console.log(bookOptions, "bookoption");
     return (
       <div>
         <DisplaySelection
